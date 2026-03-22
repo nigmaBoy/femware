@@ -1,0 +1,142 @@
+/**
+ * globals.css  — FemWare
+ *
+ * All hardcoded pink values replaced with CSS custom properties.
+ * The ThemeProvider injects --fem-* variables into :root at runtime.
+ * Fallback values are the original pink (hue 315) so the app looks
+ * identical on first load before JS runs.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Caveat+Brush&display=swap');
+
+@font-face {
+  font-family: 'Silva Marine';
+  src: url('/src/assets/Silva Marine.otf') format('opentype');
+}
+
+:root {
+  /* ── Fallback values (original pink theme) ─────────────────────────────── */
+  /* These get overwritten by themeContext.tsx as soon as React mounts.      */
+  --fem-h: 315;
+  --fem-s: 100%;
+  --fem-l: 75%;
+
+  --fem-base:   hsl(315, 100%, 75%);
+  --fem-dark:   hsl(315, 100%, 45%);
+  --fem-darker: hsl(315, 100%, 35%);
+  --fem-muted:  hsl(315, 45%,  72%);
+  --fem-dim:    hsl(315, 30%,  80%);
+
+  --fem-a08:  hsla(315, 100%, 75%, 0.08);
+  --fem-a12:  hsla(315, 100%, 75%, 0.12);
+  --fem-a15:  hsla(315, 100%, 75%, 0.15);
+  --fem-a18:  hsla(315, 100%, 75%, 0.18);
+  --fem-a20:  hsla(315, 100%, 75%, 0.20);
+  --fem-a22:  hsla(315, 100%, 75%, 0.22);
+  --fem-a25:  hsla(315, 100%, 75%, 0.25);
+  --fem-a28:  hsla(315, 100%, 75%, 0.28);
+  --fem-a30:  hsla(315, 100%, 75%, 0.30);
+  --fem-a33:  hsla(315, 100%, 75%, 0.33);
+  --fem-a40:  hsla(315, 100%, 75%, 0.40);
+  --fem-a45:  hsla(315, 100%, 75%, 0.45);
+  --fem-a50:  hsla(315, 100%, 75%, 0.50);
+  --fem-a55:  hsla(315, 100%, 75%, 0.55);
+  --fem-a65:  hsla(315, 100%, 75%, 0.65);
+  --fem-a80:  hsla(315, 100%, 75%, 0.80);
+
+  --fem-glow-sm: 0 0 8px  hsla(315, 100%, 75%, 0.4);
+  --fem-glow-md: 0 0 16px hsla(315, 100%, 75%, 0.5);
+  --fem-glow-lg: 0 6px 22px hsla(315, 100%, 75%, 0.28), 0 2px 6px hsla(315, 100%, 75%, 0.18);
+
+  --fem-inset-sm: inset 0 0 10px hsla(315, 100%, 75%, 0.20);
+  --fem-inset-md: inset 0 0 20px hsla(315, 100%, 75%, 0.45);
+  --fem-inset-lg: inset 0 0 30px hsla(315, 100%, 75%, 0.60);
+  --fem-inset-xl: inset 0px 0px 40px hsla(315, 100%, 75%, 0.80);
+
+  --fem-island-bg:     hsl(315, 15%, 98%);
+  --fem-island-shadow: inset 0px 0px 40px hsla(315, 100%, 75%, 0.80);
+
+  --fem-icon-filter:          brightness(0) saturate(100%) invert(73%) sepia(36%) saturate(937%) hue-rotate(286deg) brightness(101%) contrast(96%);
+  --fem-icon-filter-inactive: brightness(0) saturate(100%) invert(80%) sepia(15%) saturate(600%) hue-rotate(286deg) brightness(95%)  contrast(90%);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+body {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  color: var(--fem-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+input, button { font-family: inherit; }
+a { text-decoration: none; color: inherit; }
+
+::selection {
+  background-color: var(--fem-a40);
+  color: #fff;
+}
+
+/* Island utility class — uses live CSS vars */
+.fw-island {
+  background: var(--fem-island-bg);
+  border: 1px solid var(--fem-a08);
+  box-shadow: var(--fem-island-shadow);
+  border-radius: 6px;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--fem-a50); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fem-a65); }
+* { scrollbar-width: thin; scrollbar-color: var(--fem-a50) transparent; }
+
+/* Code editor syntax highlight colours — themed */
+.fw-kw  { color: var(--fem-base); }
+.fw-str { color: hsl(calc(var(--fem-h) + 60), 90%, 65%); }   /* complementary hue */
+.fw-cmt { color: hsl(120, 50%, 60%); }                         /* always green */
+.fw-num { color: hsl(calc(var(--fem-h) + 150), 70%, 70%); }
+.fw-fn  { color: hsl(calc(var(--fem-h) - 90), 80%, 65%); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Shared animation keyframes used by multiple components */
+@keyframes blobFloat1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%     { transform: translate(18px,-12px) scale(1.04); }
+  66%     { transform: translate(-10px,8px) scale(0.97); }
+}
+@keyframes blobFloat2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%     { transform: translate(-14px,10px) scale(1.03); }
+  66%     { transform: translate(12px,-8px) scale(0.98); }
+}
+@keyframes blobFloat3 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%     { transform: translate(8px,14px) scale(1.05); }
+}
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%,100% { opacity: 0.7; }
+  50%     { opacity: 1; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes knobPop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(0.68); }
+  65%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}

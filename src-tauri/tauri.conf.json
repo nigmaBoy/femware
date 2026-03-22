@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "FemWare",
+  "version": "0.1.0",
+  "identifier": "com.synapsez.app",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  }, 
+  "app": {
+"windows": [
+  {
+    "title": "FemWare",
+    "width": 1200,
+    "height": 700,
+    "resizable": true,
+    "decorations": false,
+    "shadow": false,
+    "center": true,
+    "transparent": true
+  }
+],
+
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://*"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "../src/assets/icon.ico"
+    ],
+    "externalBin": [
+      "binaries/luau-lsp"
+    ]
+  }
+}
